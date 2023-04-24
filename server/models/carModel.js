@@ -1,30 +1,36 @@
-const mongoose = require("mongoose");
+const { Schema, model } = require("mongoose");
 
-let CarScheme = mongoose.Schema({
-  model: {
-    type: Number,
-    required: true,
+const CarSchema = new Schema(
+  {
+    model: {
+      type: Number,
+      required: false,
+    },
+    make: {
+      type: String,
+      required: true,
+    },
+    Color: {
+      type: String,
+      required: false,
+    },
+    Owner: {
+      type: String,
+      required: true,
+    },
+    Registration: {
+      type: String,
+      required: true,
+    },
+    Address: {
+      type: String,
+      required: true,
+    },
   },
-  make: {
-    type: String,
-    required: true,
-  },
-  Color: {
-    type: String,
-    required: true,
-  },
-  Owner: {
-    type: String,
-    required: false,
-  },
-  Registration: {
-    type: String,
-    required: true,
-  },
-  Address: {
-    type: String,
-    required: true,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
-module.exports = mongoose.model("Car", CarScheme);
+const Car = model("Car", CarSchema);
+module.exports = Car;
